@@ -1,3 +1,4 @@
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { clickSquare, jumpToPast } from './actions';
 import { Game } from './components';
@@ -6,16 +7,15 @@ const mapStateToProps = (state, ownProps) => {
     return state.game;
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handleClick: index => {
-            dispatch(clickSquare(index));
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    ...bindActionCreators(
+        {
+            clickSquare,
+            jumpToPast
         },
-        jumpTo: step => {
-            dispatch(jumpToPast(step));
-        }
-    };
-};
+        dispatch
+    ),
+});
 
 export const GameContainer = connect(
     mapStateToProps,
