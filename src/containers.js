@@ -7,13 +7,15 @@ const mapStateToProps = (state, ownProps) => {
     return state.game;
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators(
-    {
-        clickSquare,
-        jumpToPast
-    },
-    dispatch
-);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    ...bindActionCreators(
+        {
+            clickSquare,
+            jumpToPast
+        },
+        dispatch
+    ),
+});
 
 export const GameContainer = connect(
     mapStateToProps,
